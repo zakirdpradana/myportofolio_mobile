@@ -25,7 +25,6 @@ class MyHomePage extends StatelessWidget {
   ];
 
   @override
-  @override
   Widget build(BuildContext context) {
     // Scaffold menyediakan struktur visual dasar halaman (AppBar, Body, SnackBar).
     return Scaffold(
