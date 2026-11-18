@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
 
 class ItemHomepage {
@@ -38,7 +39,9 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white)
       ),
+      drawer: const LeftDrawer(),
       // Body dibungkus SingleChildScrollView agar halaman dapat digulir dan bebas overflow.
       body: SingleChildScrollView(
         child: Padding(
