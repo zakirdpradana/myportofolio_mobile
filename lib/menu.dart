@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
+import 'package:myportofolio_mobile/experience_form.dart';
 
 
 class ItemHomepage {
@@ -172,6 +173,13 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
               SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
             );
+
+          // Navigate ke halaman yang sesuai
+          if (item.name == "Tambah Pengalaman") {
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ExperienceFormPage()));
+          }
+
         },
         child: Container(
           padding: const EdgeInsets.all(8),
