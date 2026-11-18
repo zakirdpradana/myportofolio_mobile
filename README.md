@@ -14,6 +14,7 @@ Proyek ini adalah sebuah portofolio pribadi berbasis aplikasi mobile yang dibang
 ## Progress Mingguan
 - 11 Nov 2026 - Tutorial 8: Melakukan setup dan inisialisasi project
 - 16 Nov 2026 - Tugas 7: Mengubah profil portofolio, membuat tombol aksi Lihat Pendidikan, mengubah tombol Lihat Proyek dan Tambah Proyek menjadi Lihat Pengalaman dan Tambah Pengalaman, mengubah warna tombol aksi, dan menambahkan widget profile/avatar image 
+- 18 Nov 2026 - Tutorial 9: Mengimplementasikan navigasi menggunakan drawer menu, menambahkan form untuk data pengalaman, dan melakukan refactor kode
 
 ---
 
