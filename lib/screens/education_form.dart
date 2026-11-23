@@ -260,7 +260,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                                     Text(
                                         'Tanggal Mulai: ${_formatDate(_startDate)}'),
                                     Text(
-                                      'Tanggal Selesai: ${_isOngoing ? "Sekarang" : _formatDate(_endDate)}',
+                                      'Tanggal Selesai: ${_isOngoing ? "-" : _formatDate(_endDate)}',
                                     ),
                                     Text(
                                       'Status: ${_isOngoing ? "Masih Berjalan" : "Selesai"}',
