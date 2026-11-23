@@ -15,6 +15,7 @@ Proyek ini adalah sebuah portofolio pribadi berbasis aplikasi mobile yang dibang
 - 11 Nov 2026 - Tutorial 8: Melakukan setup dan inisialisasi project
 - 16 Nov 2026 - Tugas 7: Mengubah profil portofolio, membuat tombol aksi Lihat Pendidikan, mengubah tombol Lihat Proyek dan Tambah Proyek menjadi Lihat Pengalaman dan Tambah Pengalaman, mengubah warna tombol aksi, dan menambahkan widget profile/avatar image 
 - 18 Nov 2026 - Tutorial 9: Mengimplementasikan navigasi menggunakan drawer menu, menambahkan form untuk data pengalaman, dan melakukan refactor kode
+- 23 Nov 2026 - Tugas 8: Menambahkan form untuk data pendidikan beserta navigasi antar halamannya, serta fitur tambahan berupa tombol reset form
 
 ---
 
@@ -72,3 +73,26 @@ Proyek ini adalah sebuah portofolio pribadi berbasis aplikasi mobile yang dibang
 Pada tugas 7 ini saya dibantu oleh Gemini AI. Diawal, saya meminta AI untuk menjabarkan hal dan kode apa saja yang perlu saya implementasikan pada tugas 7 ini. Kemudian, untuk setiap minimal checklist yang ada di berkas tugas, saya meminta AI untuk memeriksa kesesuaian dari kode yang telah saya buat. Saya juga meminta AI untuk menyesuaikan tata letak, warna, dan icon dari widget yang ada di project saya. Terakhir, saya meminta AI untuk membuatkan kode dari widget avatar/profile image.
 
 **Link**: https://share.gemini.google/rgvDRwq00BJo
+
+---
+
+### Tugas 8
+
+1.  Perbedaan ketiga metode Navigator tersebut terletak pada cara masing-masing mengelola dan memanipulasi route di puncak stack. Metode Navigator.push() menambahkan route baru ke bagian paling atas stack agar halaman baru tersebut tampil di atas halaman sebelumnya. Sebaliknya, metode Navigator.pushReplacement() menghapus route aktif di puncak stack dan menggantinya secara langsung dengan route baru tanpa mengubah elemen stack di bawahnya. Sementara itu, metode Navigator.pop() menghapus route teratas untuk kembali ke halaman yang berada tepat di bawahnya.
+
+    Untuk membuka formulir dari kartu aksi (ItemCard), metode yang digunakan adalah Navigator.push() dengan MaterialPageRoute yang mengarah ke FormPage. Metode ini memungkinkan pengguna tetap bisa kembali ke halaman menu sebelumnya melalui tombol Back atau metode Navigator.pop(). Sementara itu, opsi Home di drawer memanggil Navigator.pushReplacement() yang mengarah ke MyHomePage() pada properti onTap, sehingga route yang sedang aktif saat ini akan langsung digantikan oleh MyHomePage() tanpa menambah tumpukan halaman baru.
+
+2.  Susunan Scaffold, AppBar, dan Drawer menjaga konsistensi antarmuka dengan menyediakan kerangka halaman standar untuk berbagai layar aplikasi yang menyatukan bilah atas (AppBar), menu navigasi samping (drawer), dan konten utama (body). Melalui struktur ini, AppBar menyeragamkan tampilan kepala halaman melalui pengaturan judul, warna latar belakang, dan gaya ikon. Sementara itu, komponen LeftDrawer beserta DrawerHeader-nya dapat digunakan ulang secara identik pada berbagai layar, baik pada halaman utama (MyHomePage), maupun halaman formulir (FormPage).   
+
+    Contoh penggunaan warna tema di lebih dari satu halaman adalah penerapan Colors.indigo yang selaras dengan warna primer tema (Theme.of(context).colorScheme.primary) secara konsisten di berbagai halaman. Warna tema ini digunakan pada AppBar dan bingkai avatar di halaman utama (MyHomePage), latar belakang DrawerHeader di dalam LeftDrawer, serta pada AppBar, CheckboxListTile (activeColor), tombol OutlinedButton, dan tombol simpan ElevatedButton di halaman EducationFormPage.
+
+3.  Tata letak yang memadukan widget Form, SingleChildScrollView, dan Column dipilih untuk formulir karena masing-masing memiliki fungsi terstruktur dalam mengelola antarmuka masukan pengguna. Widget Form berfungsi sebagai wadah terpusat untuk mengelola state dan validasi seluruh input field. Kemudian, di dalamnya, widget Column dengan CrossAxisAlignment.start menyusun kolom isian dan tombol secara vertikal dari atas ke bawah agar rapi dan mudah diikuti. 
+
+    Ketika ruang layar terbatas, widget pengatur jarak, seperti Padding memberi ruang batas di sekeliling setiap elemen agar tidak berhimpitan dan SizedBox mengatur jarak pemisah antarkomponen. Sedangkan, widget penggulir SingleChildScrollView membungkus Column yang secara default tidak dapat di-scroll agar seluruh isi formulir tetap dapat digulir saat melebihi tinggi layar.
+
+4.  Saat tombol Simpan ditekan, GlobalKey\<FormState\> yang terpasang pada atribut key milik widget Form berperan untuk mengakses state formulir agar pemanggilan metode validate() dapat mengeksekusi seluruh fungsi validator di setiap field input. Masing-masing validator kemudian memeriksa kelayakan nilai masukan dan mengembalikan teks pesan kesalahan jika tidak memenuhi syarat, atau mengembalikan null apabila seluruh input valid sebelum nantinya data diproses lebih lanjut. Sebagai contoh, masukan berupa teks kosong ("") atau yang hanya berisi karakter spasi ("   ") akan ditolak oleh logika validasi yang memeriksa kondisi null maupun string kosong setelah spasi dihapus (trim().isEmpty). Oleh karena itu, memilih jenis widget input atau tipe papan ketik saja belum cukup karena hal tersebut hanya mengatur antarmuka masukan pengguna tanpa mampu mencegah pengguna membiarkan kolom wajib tetap kosong, hanya mengisinya dengan spasi, atau mengirimkan data yang melanggar aturan validasi formulir.
+
+**AI Disclosure**:
+Saya menggunakan Gemini AI untuk membantu pengerjaan tugas ini. Secara umum, saya hanya menggunakan Gemini AI untuk mengusulkan saya ide, membuat kode yang sebelumnya belum diimplementasikan/dicontohkan di berkas tutorial, serta untuk mengoreksi/men-debug kode yang telah saya buat. Berikut ini penjelaskan lebih detailnya. Pertama, saya meminta Gemini AI untuk memberikan arahan dalam mengimplementasikan input tanggal pada education form. Kemudian, saya memintanya untuk memberikan saya saran dalam memilih warna untuk widget action card, serta ide untuk fitur tambahan. Terakhir, saya meminta Gemini AI untuk mengoreksi dan melakukan debugging terdahap kode yang telah saya buat. 
+
+**Link**: https://share.gemini.google/b1guKVpze7Zn
