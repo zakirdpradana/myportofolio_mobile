@@ -238,61 +238,92 @@ class _EducationFormPageState extends State<EducationFormPage> {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.indigo),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text(
-                                  'Pendidikan berhasil ditambahkan!'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Nama Institusi: $_institutionName'),
-                                    Text('Deskripsi: $_description'),
-                                    Text(
-                                        'Tanggal Mulai: ${_formatDate(_startDate)}'),
-                                    Text(
-                                      'Tanggal Selesai: ${_isOngoing ? "-" : _formatDate(_endDate)}',
-                                    ),
-                                    Text(
-                                      'Status: ${_isOngoing ? "Masih Berjalan" : "Selesai"}',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _formKey.currentState!.reset();
-                                    setState(() {
-                                      _institutionName = "";
-                                      _description = "";
-                                      _startDate = null;
-                                      _endDate = null;
-                                      _isOngoing = false;
-                                    });
-                                  },
-                                ),
-                              ],
-                            );
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.indigo,
+                            side: const BorderSide(color: Colors.indigo),
+                          ),
+                          onPressed: () {
+                            _formKey.currentState!.reset();
+                            _endDateFieldKey.currentState?.reset();
+                            setState(() {
+                              _institutionName = "";
+                              _description = "";
+                              _startDate = null;
+                              _endDate = null;
+                              _isOngoing = false;
+                            });
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(content: Text("Form telah dikosongkan")),
+                              );
                           },
-                        );
-                      }
-                    },
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                          child: const Text("Reset"),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(Colors.indigo),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text(
+                                        'Pendidikan berhasil ditambahkan!'),
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Nama Institusi: $_institutionName'),
+                                          Text('Deskripsi: $_description'),
+                                          Text(
+                                              'Tanggal Mulai: ${_formatDate(_startDate)}'),
+                                          Text(
+                                            'Tanggal Selesai: ${_isOngoing ? "-" : _formatDate(_endDate)}',
+                                          ),
+                                          Text(
+                                            'Status: ${_isOngoing ? "Masih Berjalan" : "Selesai"}',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text('OK'),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          _formKey.currentState!.reset();
+                                          setState(() {
+                                            _institutionName = "";
+                                            _description = "";
+                                            _startDate = null;
+                                            _endDate = null;
+                                            _isOngoing = false;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
+                          child: const Text(
+                            "Save",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
