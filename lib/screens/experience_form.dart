@@ -19,11 +19,11 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
   String _title = '';
   String _description = '';
   String _category = 'full-time';
+  String _thumbnail = '';
   bool _isOngoing = true;
   DateTime? _endedAt;
   bool _isSubmitting = false;
 
-  // Key sesuai EXPERIENCE_CHOICES di Django models.py, value untuk tampilan UI
   static const Map<String, String> _categories = {
     'internship': 'Internship',
     'research': 'Research',
@@ -73,6 +73,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
       title: _title,
       description: _description,
       category: _category,
+      thumbnail: _thumbnail,
       endedAt: _isOngoing ? null : _endedAt,
       isOngoing: _isOngoing,
     );
@@ -95,6 +96,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   Text('Title: $_title'),
                   Text('Kategori: ${_categories[_category]}'),
                   Text('Deskripsi: $_description'),
+                  if (_thumbnail.isNotEmpty) Text('Thumbnail: $_thumbnail'),
                   Text(
                     'Status: ${_isOngoing ? 'Ongoing' : 'Selesai (${_endedAt!.year}-${_endedAt!.month.toString().padLeft(2, '0')}-${_endedAt!.day.toString().padLeft(2, '0')})'}',
                   ),
@@ -233,6 +235,35 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                         _category = newValue;
                       });
                     }
+                  },
+                ),
+              ),
+
+              // === Thumbnail URL (Opsional) ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'https://example.com/thumbnail.png (opsional)',
+                    labelText: 'Thumbnail URL (Opsional)',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _thumbnail = value?.trim() ?? '';
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return null;
+                    }
+                    final uri = Uri.tryParse(value.trim());
+                    if (uri == null || !uri.hasScheme || !uri.hasAuthority) {
+                      return 'Masukkan URL yang valid (mis. https://...)';
+                    }
+                    return null;
                   },
                 ),
               ),

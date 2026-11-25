@@ -8,6 +8,7 @@ class Experience {
     required this.title,
     required this.description,
     required this.category,
+    this.thumbnail = '',
     this.startedAt,
     this.endedAt,
     this.isOngoing = true,
@@ -22,6 +23,9 @@ class Experience {
   final String title;
   final String description;
   final String category;
+
+  @JsonKey(defaultValue: '')
+  final String thumbnail;
 
   @JsonKey(includeToJson: false)
   final DateTime? startedAt;

@@ -21,6 +21,19 @@ class ExperienceDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (experience.thumbnail.isNotEmpty) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  experience.thumbnail,
+                  height: 150,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.broken_image, size: 64),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
             Text(
               experience.title,
               style: Theme.of(context).textTheme.headlineSmall,
