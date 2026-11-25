@@ -57,9 +57,7 @@ class ItemCard extends StatelessWidget {
             if (!context.mounted) return;
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(content: Text('Logout berhasil!')),
-              );
+              ..showSnackBar(const SnackBar(content: Text('Logout berhasil!')));
           } else {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
@@ -76,11 +74,7 @@ class ItemCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 26.0,
-                ),
+                Icon(item.icon, color: Colors.white, size: 26.0),
                 const Padding(padding: EdgeInsets.all(3)),
                 Text(
                   item.name,

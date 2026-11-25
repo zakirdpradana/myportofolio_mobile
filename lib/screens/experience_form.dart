@@ -79,9 +79,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
     );
 
     try {
-      await context
-          .read<ApiClient>()
-          .createExperience(newExperience, token: token);
+      await context.read<ApiClient>().createExperience(
+        newExperience,
+        token: token,
+      );
       if (!mounted) return;
 
       await showDialog<void>(
@@ -146,9 +147,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Add Experience Form'),
-        ),
+        title: const Center(child: Text('Add Experience Form')),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),

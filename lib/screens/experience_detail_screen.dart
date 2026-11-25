@@ -57,10 +57,7 @@ class ExperienceDetailScreen extends StatelessWidget {
               'Ended At: ${experience.isOngoing ? 'Present' : _formatDate(experience.endedAt)}',
             ),
             const Divider(height: 24),
-            Text(
-              'Description',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text('Description', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 8),
             Text(experience.description),
           ],

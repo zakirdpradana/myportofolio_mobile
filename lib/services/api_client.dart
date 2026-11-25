@@ -18,7 +18,7 @@ class ApiException implements Exception {
 /// HTTP client for the MyPortfolio Django REST Framework backend.
 class ApiClient {
   ApiClient({http.Client? client, this.baseUrl = apiBaseUrl})
-      : _client = client ?? http.Client();
+    : _client = client ?? http.Client();
 
   final http.Client _client;
   final String baseUrl;
@@ -64,10 +64,7 @@ class ApiClient {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode({
-        'username': username,
-        'password': password,
-      }),
+      body: jsonEncode({'username': username, 'password': password}),
     );
     _ensureSuccess(response);
 
@@ -78,10 +75,7 @@ class ApiClient {
   Future<void> logout({required String token}) async {
     final response = await _client.post(
       _uri('/api/v1/auth/logout/'),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      },
+      headers: {'Accept': 'application/json', 'Authorization': 'Token $token'},
     );
     _ensureSuccess(response);
   }

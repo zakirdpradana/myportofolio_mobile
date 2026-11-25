@@ -24,15 +24,12 @@ class _EducationFormPageState extends State<EducationFormPage> {
         "${date.month.toString().padLeft(2, '0')}/"
         "${date.year}";
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Add Education Form',
-          ),
-        ),
+        title: const Center(child: Text('Add Education Form')),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -67,7 +64,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   },
                 ),
               ),
-              
+
               // === Description ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -217,8 +214,8 @@ class _EducationFormPageState extends State<EducationFormPage> {
                           _isOngoing
                               ? "Sekarang (Masih Berjalan)"
                               : (_endDate == null
-                                  ? "Pilih Tanggal Selesai"
-                                  : _formatDate(_endDate)),
+                                    ? "Pilih Tanggal Selesai"
+                                    : _formatDate(_endDate)),
                           style: TextStyle(
                             color: _isOngoing || _endDate == null
                                 ? Colors.grey[600]
@@ -259,7 +256,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
                             ScaffoldMessenger.of(context)
                               ..hideCurrentSnackBar()
                               ..showSnackBar(
-                                const SnackBar(content: Text("Form telah dikosongkan")),
+                                const SnackBar(
+                                  content: Text("Form telah dikosongkan"),
+                                ),
                               );
                           },
                           child: const Text("Reset"),
@@ -269,7 +268,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
                       Expanded(
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all(Colors.indigo),
+                            backgroundColor: WidgetStateProperty.all(
+                              Colors.indigo,
+                            ),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -278,15 +279,20 @@ class _EducationFormPageState extends State<EducationFormPage> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: const Text(
-                                        'Pendidikan berhasil ditambahkan!'),
+                                      'Pendidikan berhasil ditambahkan!',
+                                    ),
                                     content: SingleChildScrollView(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text('Nama Institusi: $_institutionName'),
+                                          Text(
+                                            'Nama Institusi: $_institutionName',
+                                          ),
                                           Text('Deskripsi: $_description'),
                                           Text(
-                                              'Tanggal Mulai: ${_formatDate(_startDate)}'),
+                                            'Tanggal Mulai: ${_formatDate(_startDate)}',
+                                          ),
                                           Text(
                                             'Tanggal Selesai: ${_isOngoing ? "-" : _formatDate(_endDate)}',
                                           ),

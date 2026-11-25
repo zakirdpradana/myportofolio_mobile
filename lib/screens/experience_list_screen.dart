@@ -72,9 +72,7 @@ class _ExperienceListScreenState extends State<ExperienceListScreen> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child: const Center(
-                    child: Text('No experiences found.'),
-                  ),
+                  child: const Center(child: Text('No experiences found.')),
                 ),
               ),
             );
@@ -86,11 +84,14 @@ class _ExperienceListScreenState extends State<ExperienceListScreen> {
               itemCount: experiences.length,
               itemBuilder: (context, index) {
                 final experience = experiences[index];
-                final statusLabel =
-                    experience.isOngoing ? 'Ongoing' : 'Completed';
+                final statusLabel = experience.isOngoing
+                    ? 'Ongoing'
+                    : 'Completed';
                 return Card(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   child: ListTile(
                     title: Text(experience.title),
                     subtitle: Text(
