@@ -16,6 +16,7 @@ Proyek ini adalah sebuah portofolio pribadi berbasis aplikasi mobile yang dibang
 - 16 Nov 2026 - Tugas 7: Mengubah profil portofolio, membuat tombol aksi Lihat Pendidikan, mengubah tombol Lihat Proyek dan Tambah Proyek menjadi Lihat Pengalaman dan Tambah Pengalaman, mengubah warna tombol aksi, dan menambahkan widget profile/avatar image 
 - 18 Nov 2026 - Tutorial 9: Mengimplementasikan navigasi menggunakan drawer menu, menambahkan form untuk data pengalaman, dan melakukan refactor kode
 - 23 Nov 2026 - Tugas 8: Menambahkan form untuk data pendidikan beserta navigasi antar halamannya, serta fitur tambahan berupa tombol reset form
+- 25 Nov 2026 - Tutorial 10: Menghubungkan data experience dengan website Django menggunakan API endpoints, menyesuaikan Model dan Form untuk Experience, membuat halaman untuk login, serta menyiapkan CI/CD menggunakan GitHub Actions
 
 ---
 
